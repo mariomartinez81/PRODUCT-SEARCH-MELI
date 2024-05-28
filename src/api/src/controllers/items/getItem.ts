@@ -1,57 +1,49 @@
 import { Request, Response } from 'express';
-import { config } from '../../utils/constants';
-import axios from 'axios';
-import { ItemsProps, ProductsFoundProps } from '../../types/products.type';
+import { ProductsFoundProps } from '../../types/products.type';
 import { formatProductsItems } from '../../utils/formatProductsItems';
 import { SingleProductProps } from '../../types/singleProduct.type';
+import {
+  getDescriptionItemByIdExternalApi,
+  getItemByIdExternalApi,
+  getItemsFromExternalApi,
+} from '../../utils/helpers';
+import { author } from '../../utils/constants';
 
-const { API_URL } = config;
 const getItems = async (req: Request, res: Response) => {
   try {
     const { q } = req.query;
-    const itemsFound: ProductsFoundProps = await axios
-      .get(`${API_URL}/sites/MLA/search?q=${q}`)
-      .then((res) => res.data);
+    const itemsFound: ProductsFoundProps = await getItemsFromExternalApi(
+      `${q}`,
+    );
 
     const formattedItems = formatProductsItems(itemsFound.results);
 
-    const categories = itemsFound?.available_filters
-      // const categories = itemsFound?.filters
-      ?.find((item) => item.id === 'category')
-      ?.values?.map((item) => item.name);
-
-    console.log('==============================');
-    console.log(itemsFound?.available_filters);
-    console.log('==============================');
+    const categories = itemsFound?.filters
+      .find((item) => item.id === 'category')
+      ?.values.flatMap((category) =>
+        category.path_from_root.map((category) => category.name),
+      );
 
     const finalsResults = {
-      author: {
-        name: 'Mario',
-        lastname: 'Martinez',
-      },
+      author,
       categories: categories ?? [],
       items: formattedItems,
     };
-    res.send(finalsResults);
+    res.status(200).json(finalsResults);
   } catch (error) {
     console.log(error);
+    res.status(500).json({ author, message: 'Internal server error' });
   }
 };
+
 const getItemsById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const itemFound: SingleProductProps = await axios
-      .get(`${API_URL}/items/${id}`)
-      .then((res) => res.data);
-    const itemDescription = await axios
-      .get(`${API_URL}/items/${id}/description`)
-      .then((res) => res.data);
+    const itemFound: SingleProductProps = await getItemByIdExternalApi(id);
+    const itemDescription = await getDescriptionItemByIdExternalApi(id);
 
     const item = {
-      author: {
-        name: 'Mario',
-        lastname: 'Martinez',
-      },
+      author,
       id: itemFound.id,
       title: itemFound.title,
       price: {
@@ -65,14 +57,10 @@ const getItemsById = async (req: Request, res: Response) => {
       sold_quantity: itemFound.initial_quantity,
       description: itemDescription.plain_text,
     };
-
-    console.log('==============================');
-    console.log(itemFound);
-    console.log(itemDescription);
-    console.log('==============================');
-    res.send(item);
+    res.status(200).json(item);
   } catch (error) {
     console.log(error);
+    res.status(500).json({ author, message: 'Internal server error' });
   }
 };
 

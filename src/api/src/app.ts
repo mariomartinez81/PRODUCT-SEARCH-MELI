@@ -2,14 +2,12 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import routerApi from './routes';
-import { config } from './utils/constants';
+import { errorHandler } from './middlewares/errorHandler';
 
-const app = express();
-const { PORT } = config;
+export const app = express();
 
 app.use(express.json());
 app.use(cors());
-
-app.listen(PORT, () => console.log('Server is running on port', PORT));
+app.use(errorHandler);
 
 routerApi(app);
