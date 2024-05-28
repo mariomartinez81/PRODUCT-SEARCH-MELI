@@ -4,21 +4,20 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   backgroundColor?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  text?: string;
+  text?: string | React.ReactNode;
 }
 
 const Button = ({
   className,
-  backgroundColor = '#296AF8',
+  backgroundColor,
   text,
   size = 'xs',
   ...rest
 }: ButtonProps) => (
   <button
-    className={
-      className ??
-      `flex justify-center items-center py-2 w-full rounded-sm text-white cursor-pointer bg-${backgroundColor} bg-[${backgroundColor}] text-${size}`
-    }
+    className={`flex justify-center items-center py-2 w-full rounded-sm text-white cursor-pointer bg-[${
+      backgroundColor ?? '#296AF8'
+    }] text-${size} ${className}`}
     {...rest}
   >
     {text}

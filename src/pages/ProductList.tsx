@@ -1,86 +1,58 @@
-import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
+
 import ProductRow from '../components/ProductRow';
+import useAllProducts from '../hooks/useAllProducts';
 import { ItemProps } from '../types/product.type';
-import { useNavigate } from 'react-router-dom';
+import BreadCrumb from '../components/BreadCrumb';
+import useQueryParams from '../hooks/useQueryParams';
+import EmptyState from '../components/EmptyState';
+import stg from '../utils/strings';
 
-interface ProductListProps {}
+const ProductList = () => {
+  const { state } = useLocation();
+  const queryParams = useQueryParams();
+  const search = queryParams.get('search');
 
-const ProductList = ({}: ProductListProps) => {
-  const productsData = {
-    author: {
-      name: 'mario',
-      lastname: 'martinez',
-    },
-    items: [
-      {
-        id: '1',
-        title:
-          'Audífonos Sony Noise Cancelling Bluetooth Hi-res Wh-1000xm4 Color Negro',
-        price: {
-          currency: 'ARS',
-          amount: 1930,
-          decimals: 2,
-        },
-        picture:
-          'https://http2.mlstatic.com/D_NQ_NP_2X_901878-MLA45726882502_042021-F.webp',
-        condition: 'new',
-        free_shipping: true,
-      },
-      {
-        id: '2',
-        title: 'iphone',
-        price: {
-          currency: 'ARS',
-          amount: 2500,
-          decimals: 0,
-        },
-        picture:
-          'https://http2.mlstatic.com/D_NQ_NP_2X_901878-MLA45726882502_042021-F.webp',
-        condition: 'new',
-        free_shipping: false,
-      },
-      {
-        id: '3',
-        title: 'iphone',
-        price: {
-          currency: 'ARS',
-          amount: 100,
-          decimals: 0,
-        },
-        picture:
-          'https://http2.mlstatic.com/D_NQ_NP_2X_901878-MLA45726882502_042021-F.webp',
-        condition: 'new',
-        free_shipping: true,
-      },
-      {
-        id: '4',
-        title: 'iphone',
-        price: {
-          currency: 'ARS',
-          amount: 100,
-          decimals: 0,
-        },
-        picture:
-          'https://http2.mlstatic.com/D_NQ_NP_2X_901878-MLA45726882502_042021-F.webp',
-        condition: 'new',
-        free_shipping: false,
-      },
-    ],
-  };
+  console.log('==============================');
+  console.log({ state, search });
+  console.log('==============================');
+
+  const { data: productsData, isLoading } = useAllProducts({
+    search: state?.search || search,
+  }) as any;
 
   const hasProducts = !!productsData?.items?.length;
   const navigate = useNavigate();
   const handleClick = (id?: string) => navigate(`/items/${id}`);
+  if (isLoading) return <div></div>;
   return (
-    <div className="flex flex-col items-center bg-white self-center w-full p-4">
-      {hasProducts &&
-        productsData?.items?.map((product: ItemProps) => (
-          <ProductRow
-            key={product?.id}
-            product={product}
-            handleClick={handleClick}
+    <div className="w-full">
+      <BreadCrumb list={productsData?.categories} />
+
+      <div className="flex flex-col items-center self-center w-full h-full px-3 bg-white">
+        {hasProducts ? (
+          productsData?.items
+            ?.slice(0, 4)
+            ?.map((product: ItemProps) => (
+              <ProductRow
+                key={product?.id}
+                product={product}
+                handleClick={handleClick}
+              />
+            ))
+        ) : (
+          <EmptyState
+            title={stg('products_not_found')}
+            description={stg('please_search_another_option')}
+            className="w-full"
+            style={{ width: '100%' }}
+            primaryIcon={
+              <HiOutlineExclamationCircle className="text-red-600" size={32} />
+            }
           />
-        ))}
+        )}
+      </div>
     </div>
   );
 };

@@ -8,7 +8,8 @@ interface HeaderProps {
 const Header = ({ className, children }: HeaderProps) => (
   <div
     className={
-      className ?? 'w-full p-3 bg-[#FFE309] flex items-center justify-center'
+      className ??
+      'w-full bg-[#FFE309] flex items-center justify-center py-3 px-4'
     }
   >
     {children}

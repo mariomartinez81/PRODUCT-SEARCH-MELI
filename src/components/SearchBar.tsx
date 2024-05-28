@@ -27,7 +27,7 @@ const SearchBar = ({
       />
       {icon && (
         <Icon
-          className="flex justify-center items-center h-full px-2 rounded-r-sm bg-gray-300 cursor-pointer"
+          className="flex justify-center items-center h-full px-2 rounded-r-sm bg-[#e9e9e9] cursor-pointer"
           icon={icon}
           onClick={onClickIcon}
         />

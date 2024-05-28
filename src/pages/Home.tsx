@@ -14,7 +14,11 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handlerSearchBar = () => {
-    navigate(`items?search=${inputValue}`);
+    navigate(`items?search=${inputValue}`, {
+      state: {
+        search: inputValue,
+      },
+    });
   };
   const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) =>
     handleKeyPress({
@@ -49,8 +53,8 @@ const Home = () => {
         </Header>
       </div>
       <div
-        className={`flex justify-center items-center  ${
-          isMobile ? 'px-3' : 'px-40 mx-3'
+        className={`flex w-full justify-center items-center  ${
+          isMobile ? 'px-3' : 'px-44'
         } `}
       >
         <Outlet />

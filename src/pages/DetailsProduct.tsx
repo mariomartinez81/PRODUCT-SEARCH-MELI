@@ -3,33 +3,20 @@ import Button from '../components/Button';
 import { useResponsive } from '../hooks/useResponsive';
 import stg from '../utils/strings';
 import Amount from '../components/Amount';
+import useProduct from '../hooks/useProduct';
+import { useParams } from 'react-router-dom';
 
 interface DetailsProductProps {}
 
 const DetailsProduct = ({}: DetailsProductProps) => {
-  const productDetail = {
-    author: {
-      name: 'mario',
-      lastname: 'martinez',
-    },
-    item: {
-      id: '1',
-      title:
-        'Audífonos Sony Noise Cancelling Bluetooth Hi-res Wh-1000xm4 Color Negro',
-      price: {
-        currency: 'ARS',
-        amount: 1930,
-        decimals: 2,
-      },
-      picture:
-        'https://http2.mlstatic.com/D_NQ_NP_2X_901878-MLA45726882502_042021-F.webp',
-      condition: 'New',
-      free_shipping: true,
-      sold_quantity: 234,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscingelit. Donec commodo hendrerit fermentum. Vestibulum leo velit, consequat euporttitor a, laoreet quis purus. Integer congue, quam eu finibus sollicitudin, nibh lectus elementum nisi, rutrum hendrerit augue ante id metus. Vestibulum maximus justo sit amet urna condimentum,elit laoreet. Ut bibendum ut nibh non dapibus. Donecmaximus molestie erat, in rutrum nisi aliquam quis. Cras bibendumelit ac venenatis semper. Praesent luctus consequat sapien nonsagittis. Mauris urna dui, commodo fringilla felis sed, laoreeteleifend odio. Vestibulum egestas id nibh nec volutpat. Donec acblandit enim, a feugiat risus. Interdum et malesuada fames ac anteipsum primis in faucibus.',
-    },
-  };
+  const { id } = useParams();
+  const { data: productDetail, isLoading } = useProduct({
+    id: id ?? '',
+  }) as any;
+
+  console.log('==============================');
+  console.log(productDetail?.item);
+  console.log('==============================');
   const { isMobile } = useResponsive();
   const {
     title,
@@ -39,41 +26,51 @@ const DetailsProduct = ({}: DetailsProductProps) => {
     free_shipping,
     sold_quantity,
     description,
-  } = productDetail.item ?? {};
+  } = productDetail?.item ?? {};
   return (
-    <div className="flex flex-col items-center bg-white self-center w-full p-6">
-      <div className={`flex ${isMobile ? 'flex-col gap-6' : 'flex-row'} `}>
-        <div className="flex flex-col">
-          <img
-            className="w-6/12 h-6/12 self-center"
-            src={picture}
-            alt={picture}
-          />
-          <div className="flex flex-col gap-4">
-            <h2 className="text-xl text-gray-900 font-normal">
-              {stg('description_product')}
-            </h2>
-            <span className="text-[12px] text-gray-500">{description}</span>
-          </div>
-        </div>
-        <div className="flex flex-col w-full">
-          <span className="text-[11px]">
-            {stg('quantity_products_sold', {
-              replace: { '%condition': condition, '%qty': sold_quantity },
-            })}
-          </span>
-          <div className="font-semibold">
-            <h2>Deco Reverse</h2>
-            <h2>Sombrero Oxford</h2>
-          </div>
-          <div>
-            <Amount
-              amount={price?.amount}
-              decimals={price?.decimals}
-              classNameIntegerPart="flex text-[3rem] font-bold gap-1.5"
-              classNameDecimalPart=" text-[1.5rem] self-start"
+    <div>
+      <div className="flex flex-col items-center self-center w-full p-6 bg-white">
+        {isLoading && <div>Loading...</div>}
+        <div className={`flex ${isMobile ? 'flex-col gap-6' : 'flex-row'} `}>
+          <div className="flex flex-col p">
+            <img
+              className="self-center w-6/12 h-6/12"
+              src={picture}
+              alt={picture}
             />
-            <Button text={stg('buy')} />
+            <div className="flex flex-col gap-4">
+              <h2 className="text-xl font-normal text-gray-900">
+                {stg('description_product')}
+              </h2>
+              <span className="text-[12px] text-gray-500">
+                {description || stg('this_product_does_not_description')}
+              </span>
+            </div>
+          </div>
+          <div
+            className={`flex flex-col w-5/12 ${isMobile ? 'w-full' : 'w-6/12'}`}
+          >
+            <span className="text-[11px] w-full">
+              {stg('quantity_products_sold', {
+                replace: { '%condition': condition, '%qty': sold_quantity },
+              })}
+            </span>
+            <div className="w-full font-semibold">
+              <h2>{title}</h2>
+            </div>
+            <div>
+              <Amount
+                amount={price?.amount}
+                decimals={price?.decimals}
+                classNameIntegerPart="flex text-[2.3rem] font-normal gap-1.5"
+                classNameDecimalPart=" text-[1rem] self-start pt-2"
+              />
+              <Button
+                className="mt-8 bg-[#296AF8] text-white w- rounded-md w-full"
+                text={stg('buy')}
+                onClick={() => {}}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -14,6 +14,18 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    // "baseUrl": "./src",
+    // "paths": {
+    //   "@assets/*": ["./assets/*"],
+    //   "@components/*": ["./components/*"],
+    //   "@hooks/*": ["./hooks/*"],
+    //   "@layouts/*": ["./layouts/*"],
+    //   "@pages/*": ["./pages/*"],
+    //   "@routes/*": ["./routes/*"],
+    //   "@services/*": ["./services/*"],
+    //   "@types/*": ["./types/*"],
+    //   "@utils/*": ["./utils/*"]
+    // },
 
     /* Linting */
     "strict": true,

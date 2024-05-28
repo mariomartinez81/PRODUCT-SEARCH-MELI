@@ -44,18 +44,20 @@ const getItemsById = async (req: Request, res: Response) => {
 
     const item = {
       author,
-      id: itemFound.id,
-      title: itemFound.title,
-      price: {
-        currency: itemFound.currency_id,
-        amount: itemFound.price,
-        decimals: 2,
+      item: {
+        id: itemFound.id,
+        title: itemFound.title,
+        price: {
+          currency: itemFound.currency_id,
+          amount: itemFound.price,
+          decimals: 2,
+        },
+        picture: itemFound.thumbnail,
+        condition: itemFound.condition,
+        free_shipping: itemFound.shipping.free_shipping,
+        sold_quantity: itemFound.initial_quantity,
+        description: itemDescription.plain_text,
       },
-      picture: itemFound.thumbnail,
-      condition: itemFound.condition,
-      free_shipping: itemFound.shipping.free_shipping,
-      sold_quantity: itemFound.initial_quantity,
-      description: itemDescription.plain_text,
     };
     res.status(200).json(item);
   } catch (error) {

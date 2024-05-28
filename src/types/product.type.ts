@@ -1,3 +1,9 @@
+export interface ProductsProps {
+  author: AuthorProps;
+  categories?: string[];
+  items: ItemProps[];
+}
+
 export interface ProductProps {
   author: AuthorProps;
   categories?: string[];

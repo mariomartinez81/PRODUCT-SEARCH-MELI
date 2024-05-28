@@ -6,10 +6,11 @@ interface IconProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Icon = ({ className, icon, ...rest }: IconProps) => {
-  const urlIconImage = typeof icon === 'string';
+  const isIconString = typeof icon === 'string';
+
   return (
     <div className={className ?? 'rounded-full h-12 w-12'} {...rest}>
-      {urlIconImage ? (
+      {isIconString ? (
         <img className="h-fit w-fit" src={icon} alt={icon} />
       ) : (
         <>{icon}</>

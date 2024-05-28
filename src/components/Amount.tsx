@@ -32,7 +32,6 @@ const Amount = ({
 
   return (
     <div className={classNameContainer ?? 'flex align-baseline'}>
-      {/* <span className="currency-symbol text-lg">$</span> */}
       <span className={classNameIntegerPart ?? 'flex text-lg gap-1.5'}>
         <span>{symbol}</span>
         {integerPart.slice(1).replace(',', '.')}
