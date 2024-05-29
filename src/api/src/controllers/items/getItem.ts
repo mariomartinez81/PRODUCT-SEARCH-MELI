@@ -3,13 +3,14 @@ import { ProductsFoundProps } from '../../types/products.type';
 import { formatProductsItems } from '../../utils/formatProductsItems';
 import { SingleProductProps } from '../../types/singleProduct.type';
 import {
+  getCategoryById,
   getDescriptionItemByIdExternalApi,
   getItemByIdExternalApi,
   getItemsFromExternalApi,
 } from '../../utils/helpers';
 import { author } from '../../utils/constants';
 
-const getItems = async (req: Request, res: Response) => {
+const getItems = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { q } = req.query;
     const itemsFound: ProductsFoundProps = await getItemsFromExternalApi(
@@ -29,21 +30,26 @@ const getItems = async (req: Request, res: Response) => {
       categories: categories ?? [],
       items: formattedItems,
     };
-    res.status(200).json(finalsResults);
+    return res.status(200).json(finalsResults);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ author, message: 'Internal server error' });
+    return res.status(500).json({ author, message: 'Internal server error' });
   }
 };
 
-const getItemsById = async (req: Request, res: Response) => {
+const getItemsById = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { id } = req.params;
     const itemFound: SingleProductProps = await getItemByIdExternalApi(id);
     const itemDescription = await getDescriptionItemByIdExternalApi(id);
+    const category = await getCategoryById(itemFound?.category_id);
+    const categories = category?.path_from_root.map(
+      (category) => category.name,
+    );
 
     const item = {
       author,
+      categories: categories ?? [],
       item: {
         id: itemFound.id,
         title: itemFound.title,
@@ -59,10 +65,10 @@ const getItemsById = async (req: Request, res: Response) => {
         description: itemDescription.plain_text,
       },
     };
-    res.status(200).json(item);
+    return res.status(200).json(item);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ author, message: 'Internal server error' });
+    return res.status(500).json({ author, message: 'Internal server error' });
   }
 };
 

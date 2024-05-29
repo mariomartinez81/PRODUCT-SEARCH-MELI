@@ -16,10 +16,6 @@ const ProductList = () => {
   const queryParams = useQueryParams();
   const search = queryParams.get('search');
 
-  console.log('==============================');
-  console.log({ state, search });
-  console.log('==============================');
-
   const { data: productsData, isLoading } = useAllProducts({
     search: state?.search || search,
   }) as any;

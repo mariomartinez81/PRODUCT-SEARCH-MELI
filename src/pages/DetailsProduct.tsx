@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from '../components/Button';
 import { useResponsive } from '../hooks/useResponsive';
 import stg from '../utils/strings';
@@ -6,6 +5,7 @@ import Amount from '../components/Amount';
 import useProduct from '../hooks/useProduct';
 import { useParams } from 'react-router-dom';
 import DetailProductSkeleton from '../components/loaders/DetailProductSkeleton';
+import BreadCrumb from '../components/BreadCrumb';
 
 const DetailsProduct = () => {
   const { id } = useParams();
@@ -16,12 +16,10 @@ const DetailsProduct = () => {
   const { title, price, picture, condition, sold_quantity, description } =
     productDetail?.item ?? {};
 
-  const isPending = true;
-
   return (
     <div className="w-full">
+      <BreadCrumb list={productDetail?.categories} />
       <div className="flex flex-col items-center self-center w-full h-full p-6 bg-white">
-        {/* {isPending && <DetailProductSkeleton isMobile={isMobile} />} */}
         {isLoading ? (
           <DetailProductSkeleton isMobile={isMobile} />
         ) : (

@@ -7,7 +7,7 @@ export interface ProductsProps {
 export interface ProductProps {
   author: AuthorProps;
   categories?: string[];
-  item: ItemProps;
+  item: ItemProps & { categories: string[] };
 }
 
 export interface AuthorProps {

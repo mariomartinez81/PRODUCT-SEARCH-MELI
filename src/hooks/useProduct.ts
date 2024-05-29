@@ -8,9 +8,6 @@ interface UseProductProps {
 
 const useProduct = ({ id }: UseProductProps) => {
   if (!id) return;
-  console.log('==============================');
-  console.log('paso', id);
-  console.log('==============================');
   return useQuery({
     queryKey: ['product', id],
     queryFn: async () => {
