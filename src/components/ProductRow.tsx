@@ -16,11 +16,13 @@ const ProductRow = ({ product, handleClick }: ProductRowProps) => {
       onClick={() => handleClick(id)}
       aria-hidden
     >
-      <img className="w-28 h-28" src={picture} alt="" />
-      <div className="flex flex-col w-full pr-4">
-        <div className="flex items-center gap-2 mb-1">
+      <img className="w-32 h-32" src={picture} alt="" />
+      <div className="flex flex-col w-full px-4">
+        <div className="flex items-center gap-2 my-2">
           <Amount amount={price?.amount} />
-          {free_shipping && <Icon className="flex" icon={freeShippingIcon} />}
+          {free_shipping && (
+            <Icon className="flex w-4" icon={freeShippingIcon} />
+          )}
         </div>
         <span>{title}</span>
         <span>{condition}</span>

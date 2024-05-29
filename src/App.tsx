@@ -11,7 +11,7 @@ function App() {
     <div className="flex h-full">
       <ErrorBoundary>
         <BrowserRouter>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<></>}>
             <Router />
           </Suspense>
         </BrowserRouter>

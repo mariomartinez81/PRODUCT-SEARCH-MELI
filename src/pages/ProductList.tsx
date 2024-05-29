@@ -8,6 +8,8 @@ import BreadCrumb from '../components/BreadCrumb';
 import useQueryParams from '../hooks/useQueryParams';
 import EmptyState from '../components/EmptyState';
 import stg from '../utils/strings';
+import ProductsListSkeleton from '../components/loaders/ProductsListSkeleton';
+import setSkeletonLoading from '../utils/setSkeletonLoading';
 
 const ProductList = () => {
   const { state } = useLocation();
@@ -25,13 +27,17 @@ const ProductList = () => {
   const hasProducts = !!productsData?.items?.length;
   const navigate = useNavigate();
   const handleClick = (id?: string) => navigate(`/items/${id}`);
-  if (isLoading) return <div></div>;
+
   return (
     <div className="w-full">
       <BreadCrumb list={productsData?.categories} />
 
       <div className="flex flex-col items-center self-center w-full h-full px-3 bg-white">
-        {hasProducts ? (
+        {!hasProducts &&
+          isLoading &&
+          setSkeletonLoading(4, <ProductsListSkeleton />)}
+
+        {hasProducts &&
           productsData?.items
             ?.slice(0, 4)
             ?.map((product: ItemProps) => (
@@ -40,15 +46,18 @@ const ProductList = () => {
                 product={product}
                 handleClick={handleClick}
               />
-            ))
-        ) : (
+            ))}
+        {!hasProducts && !isLoading && (
           <EmptyState
             title={stg('products_not_found')}
             description={stg('please_search_another_option')}
             className="w-full"
             style={{ width: '100%' }}
             primaryIcon={
-              <HiOutlineExclamationCircle className="text-red-600" size={32} />
+              <HiOutlineExclamationCircle
+                className="mt-6 text-red-600"
+                size={32}
+              />
             }
           />
         )}

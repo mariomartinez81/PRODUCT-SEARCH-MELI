@@ -6,15 +6,10 @@ import Button from './Button';
 interface ResultsNotFoundsProps {
   title: string;
   primaryIcon?: ReactNode;
-  secondaryIcon?: ReactNode;
   className?: string;
   description?: string | ReactNode | ReactElement;
   hasButton?: boolean;
   textButton?: string | ReactNode | ReactElement;
-  classNameSecundaryIcon?: string;
-  sizeContainerPrimaryIcon?: number;
-  sizeContainerSecundaryIcon?: number;
-  customIconsGroup?: ReactNode | ReactElement;
   callback?: (() => void) | any;
   style?: CSSProperties;
   hasEditPermission?: boolean;
@@ -23,25 +18,17 @@ interface ResultsNotFoundsProps {
   classNameTexts?: string;
   customIconButton?: ReactNode | ReactElement;
   classNameButton?: string;
-  primaryButtonRef?: React.RefObject<HTMLButtonElement>;
   descriptionCustomClass?: string;
-  bgPrimaryIcon?: string;
   goTo?: string;
-  backgroundColor?: string;
 }
 
 const EmptyState = ({
   title,
   primaryIcon,
-  secondaryIcon,
   className,
   description,
-  classNameSecundaryIcon,
   hasButton = false,
   textButton = '',
-  customIconsGroup,
-  sizeContainerPrimaryIcon = 20,
-  sizeContainerSecundaryIcon = 9,
   callback,
   style,
   hasEditPermission = true,
@@ -50,11 +37,8 @@ const EmptyState = ({
   classNameTexts,
   customIconButton,
   classNameButton,
-  primaryButtonRef,
   descriptionCustomClass,
-  bgPrimaryIcon,
   goTo,
-  backgroundColor,
 }: ResultsNotFoundsProps) => {
   const buttonRender = (
     <Button
@@ -81,7 +65,7 @@ const EmptyState = ({
       style={style}
     >
       <div className={`flex flex-col items-center ${className ?? 'w-2/5'} `}>
-        {primaryIcon}
+        <div>{primaryIcon}</div>
 
         <div className={`flex flex-col space-y-3 py-9 ${classNameTexts ?? ''}`}>
           <span className="w-full text-2xl font-semibold text-center">
