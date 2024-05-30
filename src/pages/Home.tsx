@@ -21,6 +21,7 @@ const Home = () => {
       },
     });
   };
+
   const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) =>
     handleKeyPress({
       event: e,

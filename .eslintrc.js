@@ -31,6 +31,7 @@ module.exports = {
     'airbnb',
     'plugin:jest/recommended',
     'prettier',
+    'react-app/jest',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {

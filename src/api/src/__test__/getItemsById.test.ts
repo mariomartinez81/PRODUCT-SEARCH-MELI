@@ -5,11 +5,13 @@ import { Server } from 'http';
 import {
   getItemByIdExternalApi,
   getDescriptionItemByIdExternalApi,
+  getCategoryById,
 } from '../utils/helpers';
 
 jest.mock('../utils/helpers', () => ({
   getItemByIdExternalApi: jest.fn(),
   getDescriptionItemByIdExternalApi: jest.fn(),
+  getCategoryById: jest.fn(),
 }));
 
 describe('GET /items/:id', () => {
@@ -36,16 +38,21 @@ describe('GET /items/:id', () => {
       shipping: { free_shipping: true },
       initial_quantity: 10,
       currency_id: 'USD',
+      category_id: '1',
     };
 
     const mockItemDescription = {
       plain_text: 'Item description',
+    };
+    const mockCategory = {
+      path_from_root: [{ id: '1', name: 'phone' }],
     };
 
     (getItemByIdExternalApi as jest.Mock).mockResolvedValue(mockItemFound);
     (getDescriptionItemByIdExternalApi as jest.Mock).mockResolvedValue(
       mockItemDescription,
     );
+    (getCategoryById as jest.Mock).mockResolvedValue(mockCategory);
 
     const response = await request(app).get('/api/items/1').send();
     expect(response.status).toBe(200);
@@ -54,18 +61,21 @@ describe('GET /items/:id', () => {
         name: 'Mario',
         lastName: 'Martinez',
       },
-      id: '1',
-      title: 'Item 1',
-      price: {
-        currency: 'USD',
-        amount: 10,
-        decimals: 2,
+      categories: ['phone'],
+      item: {
+        id: '1',
+        title: 'Item 1',
+        price: {
+          currency: 'USD',
+          amount: 10,
+          decimals: 2,
+        },
+        picture: 'thumbnail1.jpg',
+        condition: 'new',
+        free_shipping: true,
+        sold_quantity: 10,
+        description: 'Item description',
       },
-      picture: 'thumbnail1.jpg',
-      condition: 'new',
-      free_shipping: true,
-      sold_quantity: 10,
-      description: 'Item description',
     });
   });
 

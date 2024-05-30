@@ -34,15 +34,13 @@ const ProductList = () => {
           setSkeletonLoading(4, <ProductsListSkeleton />)}
 
         {hasProducts &&
-          productsData?.items
-            ?.slice(0, 4)
-            ?.map((product: ItemProps) => (
-              <ProductRow
-                key={product?.id}
-                product={product}
-                handleClick={handleClick}
-              />
-            ))}
+          productsData?.items?.map((product: ItemProps) => (
+            <ProductRow
+              key={product?.id}
+              product={product}
+              handleClick={handleClick}
+            />
+          ))}
         {!hasProducts && !isLoading && (
           <EmptyState
             title={stg('products_not_found')}

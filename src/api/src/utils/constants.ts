@@ -7,3 +7,6 @@ export const author = {
   name: 'Mario',
   lastName: 'Martinez',
 };
+
+export const DEFAULT_LIMIT = 4;
+export const DEFAULT_OFFSET = 0;

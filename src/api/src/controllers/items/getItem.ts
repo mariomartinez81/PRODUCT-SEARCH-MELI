@@ -8,14 +8,25 @@ import {
   getItemByIdExternalApi,
   getItemsFromExternalApi,
 } from '../../utils/helpers';
-import { author } from '../../utils/constants';
+import { author, DEFAULT_LIMIT, DEFAULT_OFFSET } from '../../utils/constants';
 
 const getItems = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const { q } = req.query;
-    const itemsFound: ProductsFoundProps = await getItemsFromExternalApi(
-      `${q}`,
-    );
+    const { q, limit, offset } = req.query;
+
+    let limitNumber;
+    let offsetNumber;
+
+    if (limit === undefined) limitNumber = DEFAULT_LIMIT;
+    else limitNumber = Number(limit);
+    if (offset === undefined) offsetNumber = DEFAULT_OFFSET;
+    else offsetNumber = Number(offset);
+
+    const itemsFound: ProductsFoundProps = await getItemsFromExternalApi({
+      search: `${q}`,
+      limit: limitNumber,
+      offset: offsetNumber,
+    });
 
     const formattedItems = formatProductsItems(itemsFound.results);
 

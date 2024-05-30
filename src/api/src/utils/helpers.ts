@@ -5,6 +5,12 @@ import { SingleProductProps } from '../types/singleProduct.type';
 import { ProductsFoundProps } from '../types/products.type';
 import { DescriptionProps } from '../types/description.type';
 
+type inputGetItemsFromExternalApi = {
+  search: string;
+  limit?: number;
+  offset?: number;
+};
+
 const { API_URL } = config;
 
 export const fetchExternalApi = async (url: string, operationName?: string) => {
@@ -17,11 +23,13 @@ export const fetchExternalApi = async (url: string, operationName?: string) => {
   }
 };
 
-export const getItemsFromExternalApi = async (
-  search?: string,
-): Promise<ProductsFoundProps> =>
+export const getItemsFromExternalApi = async ({
+  search,
+  offset,
+  limit,
+}: inputGetItemsFromExternalApi): Promise<ProductsFoundProps> =>
   await fetchExternalApi(
-    `${API_URL}/sites/MLA/search?q=${search}`,
+    `${API_URL}/sites/MLA/search?q=${search}&offset=${offset}&limit=${limit}`,
     'getItemsFromExternalApi',
   );
 
