@@ -13,7 +13,6 @@ interface ResultsNotFoundsProps {
   textButton?: string | ReactNode | ReactElement;
   callback?: (() => void) | any;
   style?: CSSProperties;
-  hasEditPermission?: boolean;
   hasActionPermission?: boolean;
   styleButton?: CSSProperties;
   classNameTexts?: string;
@@ -32,7 +31,6 @@ const EmptyState = ({
   textButton = '',
   callback,
   style,
-  hasEditPermission = true,
   hasActionPermission = true,
   styleButton,
   classNameTexts,
@@ -87,7 +85,6 @@ const EmptyState = ({
         </div>
 
         {hasButton &&
-          hasEditPermission &&
           (goTo?.length ? (
             <Link className="flex justify-center w-full" to={goTo}>
               {buttonRender}

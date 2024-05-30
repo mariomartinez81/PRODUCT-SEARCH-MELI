@@ -25,7 +25,11 @@ const Unavailable = ({ type = 'app', logo }: UnavailableProps) => {
     <div className="flex items-center justify-center w-full px-6 py-6 h-dvh md:py-20 md:px-0">
       <div className="flex flex-col items-center h-full mx-auto justify-evenly max-w-92">
         {logo && (
-          <img alt="" src={logo || ''} className="object-contain mx-auto w-9" />
+          <img
+            alt={logo}
+            src={logo || ''}
+            className="object-contain mx-auto w-9"
+          />
         )}
         <div className="flex flex-col items-center ">
           {!logo && <img src={GearsIcon} alt="gears icon" className="mb-12" />}

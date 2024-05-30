@@ -3,6 +3,7 @@ interface DetailProductSkeletonProps {
 }
 const DetailProductSkeleton = ({ isMobile }: DetailProductSkeletonProps) => (
   <div
+    data-testid="skeleton-details-product"
     className={`flex w-full animate-pulse h-full gap-2 ${
       isMobile ? 'flex-col gap-6' : 'flex-row'
     } `}

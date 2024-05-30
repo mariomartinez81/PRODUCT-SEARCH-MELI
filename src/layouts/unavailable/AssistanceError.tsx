@@ -7,7 +7,7 @@ interface AssistanceErrorProps {
 const AssistanceError = ({ phoneNumber }: AssistanceErrorProps) => {
   return (
     <span className="text-xs leading-4 text-center text-gray-500 whitespace-pre">
-      {stg('if_you_need_immediate_assistance')}{' '}
+      {stg('if_you_need_immediate_assistance')}
       <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
     </span>
   );

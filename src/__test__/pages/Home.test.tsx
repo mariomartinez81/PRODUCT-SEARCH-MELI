@@ -22,6 +22,18 @@ describe('test for home page', () => {
     expect(container).toBeInTheDocument();
   });
 
+  test('should render home page in responsive window', () => {
+    Object.defineProperty(window, 'innerWidth', {
+      value: 320,
+    });
+    const { container } = render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+    expect(container).toBeInTheDocument();
+  });
+
   test('should validate render logoElement in home page', () => {
     render(
       <MemoryRouter>
@@ -65,6 +77,21 @@ describe('test for home page', () => {
     fireEvent.change(searchBarInput, { target: { value: 'test' } });
     expect(searchBarInput.value).toBe('test');
     const searchButton = screen.getAllByAltText('test-file-stub')[1];
+    expect(searchButton).toBeInTheDocument();
+    fireEvent.click(searchButton);
+  });
+
+  test('should validate functionality click to home (click icon meli)', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>,
+    );
+    const searchBarInput = screen.getByRole('textbox') as HTMLInputElement;
+    expect(searchBarInput).toBeInTheDocument();
+    fireEvent.change(searchBarInput, { target: { value: 'test' } });
+    expect(searchBarInput.value).toBe('test');
+    const searchButton = screen.getAllByAltText('test-file-stub')[0];
     expect(searchButton).toBeInTheDocument();
     fireEvent.click(searchButton);
   });

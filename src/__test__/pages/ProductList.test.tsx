@@ -29,6 +29,23 @@ describe('Should test Product list page', () => {
     expect(screen.getByText('Item 2')).toBeInTheDocument();
   });
 
+  test('Should renders product list in mobile screen', () => {
+    Object.defineProperty(window, 'innerWidth', {
+      value: 320,
+    });
+    render(
+      <MemoryRouter>
+        <ProductList />
+      </MemoryRouter>,
+    );
+
+    screen.findByText('Item 1');
+    screen.findByText('Item 2');
+
+    expect(screen.getByText('Item 1')).toBeInTheDocument();
+    expect(screen.getByText('Item 2')).toBeInTheDocument();
+  });
+
   test('Should renders Breadcrumb component', () => {
     render(
       <MemoryRouter>

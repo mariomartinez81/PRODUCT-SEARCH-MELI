@@ -26,6 +26,21 @@ describe('Test for Details product page', () => {
     expect(screen.getByText('Category 1')).toBeInTheDocument();
   });
 
+  test('Should renders product details in mobile screen', () => {
+    Object.defineProperty(window, 'innerWidth', {
+      value: 320,
+    });
+    render(
+      <MemoryRouter>
+        <DetailsProduct />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText('Item 1')).toBeInTheDocument();
+    expect(screen.getByAltText('thumbnail1.jpg')).toBeInTheDocument();
+    expect(screen.getByText('Category 1')).toBeInTheDocument();
+  });
+
   test('Should renders Breadcrumb component', () => {
     render(
       <MemoryRouter>
@@ -36,7 +51,6 @@ describe('Test for Details product page', () => {
     screen.findByText('Category 1');
     expect(screen.getByText('Category 1')).toBeInTheDocument();
   });
-
   test('Should click to buy button', () => {
     render(
       <MemoryRouter>
@@ -47,5 +61,23 @@ describe('Test for Details product page', () => {
     const buyButton = screen.getByText('Comprar');
     expect(buyButton).toBeInTheDocument();
     fireEvent.click(buyButton);
+  });
+  test('Should renders loading skeleton when data is Loading', () => {
+    (useQuery as jest.Mock).mockImplementation(() => ({
+      data: {
+        author: productMockData.author,
+        categories: [],
+        items: [],
+      },
+      isLoading: true,
+    }));
+    render(
+      <MemoryRouter>
+        <DetailsProduct />
+      </MemoryRouter>,
+    );
+
+    const skeleton = screen.getByTestId('skeleton-details-product');
+    expect(skeleton).toBeInTheDocument();
   });
 });
