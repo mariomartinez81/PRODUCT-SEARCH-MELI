@@ -45,7 +45,7 @@ describe('GET /items/:id', () => {
       plain_text: 'Item description',
     };
     const mockCategory = {
-      path_from_root: [{ id: '1', name: 'phone' }],
+      path_from_root: [{ id: '1', name: 'Category 1' }],
     };
 
     (getItemByIdExternalApi as jest.Mock).mockResolvedValue(mockItemFound);
