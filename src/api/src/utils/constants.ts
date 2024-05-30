@@ -5,7 +5,7 @@ export const config = {
 
 export const author = {
   name: 'Mario',
-  lastName: 'Martinez',
+  lastname: 'Martinez',
 };
 
 export const DEFAULT_LIMIT = 4;

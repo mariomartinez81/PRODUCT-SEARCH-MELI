@@ -59,9 +59,9 @@ describe('GET /items/:id', () => {
     expect(response.body).toEqual({
       author: {
         name: 'Mario',
-        lastName: 'Martinez',
+        lastname: 'Martinez',
       },
-      categories: ['phone'],
+      categories: ['Category 1'],
       item: {
         id: '1',
         title: 'Item 1',

@@ -3,8 +3,6 @@ import axios from 'axios';
 import { environment } from '../utils/constants';
 import { ProductProps, ProductsProps } from '../types/product.type';
 
-console.log('API_URL', environment?.API_URL);
-
 const { API_URL } = environment;
 
 const axiosInstance = axios.create({

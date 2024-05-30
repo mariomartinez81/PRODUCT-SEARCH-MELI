@@ -34,7 +34,7 @@ const replaceValue = ({
   oldValue,
   newValue,
 }: ReplaceInterface): string => {
-  if (value.replaceAll) return value.replaceAll(oldValue, newValue);
+  if (value) return value.replace(new RegExp(oldValue, 'g'), newValue);
   return value;
 };
 

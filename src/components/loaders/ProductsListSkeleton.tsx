@@ -1,5 +1,6 @@
 const ProductsListSkeleton = () => (
   <div
+    data-testid="skeleton-product-row"
     className="flex justify-center w-full h-40 py-3 border-b cursor-pointer animate-pulse"
     aria-hidden
   >
