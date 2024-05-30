@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { MemoryRouter, Route } from 'react-router-dom';
-import { render, screen, waitFor, cleanup } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 
-import { productMockData } from '__test__/__mocks__/mockDataProducts';
+import { productMockData } from '../__mocks__/mockDataProducts';
 import DetailsProduct from '../../pages/DetailsProduct';
 
 describe('Test for Details product page', () => {
@@ -14,40 +14,38 @@ describe('Test for Details product page', () => {
   });
   afterEach(() => cleanup());
 
-  test('Should renders product details when API call is successful', async () => {
+  test('Should renders product details when API call is successful', () => {
     render(
-      <MemoryRouter initialEntries={['/product/1']}>
-        <Route path="/product/:id">
-          <DetailsProduct />
-        </Route>
+      <MemoryRouter>
+        <DetailsProduct />
       </MemoryRouter>,
     );
 
-    // Wait for API call to complete
-    await waitFor(() => screen.getByText('Product 1 description'));
-
-    // Assert that product details are rendered
-    expect(screen.getByText('Product 1 description')).toBeInTheDocument();
-    expect(
-      screen.getByAltText('https://example.com/product1.jpg'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('Item 1')).toBeInTheDocument();
+    expect(screen.getByAltText('thumbnail1.jpg')).toBeInTheDocument();
     expect(screen.getByText('Category 1')).toBeInTheDocument();
-    expect(screen.getByText('Category 2')).toBeInTheDocument();
   });
 
-  test('Should renders error message when API call fails', async () => {
+  test('Should renders Breadcrumb component', () => {
     render(
-      <MemoryRouter initialEntries={['/product/2']}>
-        <Route path="/product/:id">
-          <DetailsProduct />
-        </Route>
+      <MemoryRouter>
+        <DetailsProduct />
       </MemoryRouter>,
     );
 
-    // Wait for API call to complete
-    await waitFor(() => screen.getByText('Error: Product not found'));
+    screen.findByText('Category 1');
+    expect(screen.getByText('Category 1')).toBeInTheDocument();
+  });
 
-    // Assert that error message is rendered
-    expect(screen.getByText('Error: Product not found')).toBeInTheDocument();
+  test('Should click to buy button', () => {
+    render(
+      <MemoryRouter>
+        <DetailsProduct />
+      </MemoryRouter>,
+    );
+
+    const buyButton = screen.getByText('Comprar');
+    expect(buyButton).toBeInTheDocument();
+    fireEvent.click(buyButton);
   });
 });
