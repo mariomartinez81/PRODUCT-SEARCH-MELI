@@ -1,7 +1,8 @@
-import { ItemProps } from '../types/product.type';
-import freeShippingIcon from '../assets/ic_shipping.png';
 import Icon from './Icon';
 import Amount from './Amount';
+import { ItemProps } from '../types/product.type';
+import freeShippingIcon from '../assets/ic_shipping.png';
+import { capitalizeSentence } from '../utils/capitalize';
 
 interface ProductRowProps {
   product: ItemProps;
@@ -28,7 +29,7 @@ const ProductRow = ({ product, handleClick }: ProductRowProps) => {
         <span>{condition}</span>
       </div>
       <span className="flex pt-4 pr-2  w-1/5 text-[10px] tracking-tighter text-gray-500">
-        Capital Federal
+        {capitalizeSentence(product?.seller ?? '')}
       </span>
     </div>
   );

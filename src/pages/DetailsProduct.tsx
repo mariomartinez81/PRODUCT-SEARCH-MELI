@@ -1,20 +1,20 @@
-import Button from '../components/Button';
+import { useParams } from 'react-router-dom';
+
 import { useResponsive } from '../hooks/useResponsive';
 import stg from '../utils/strings';
-import Amount from '../components/Amount';
 import useProduct from '../hooks/useProduct';
-import { useParams } from 'react-router-dom';
 import DetailProductSkeleton from '../components/loaders/DetailProductSkeleton';
 import BreadCrumb from '../components/BreadCrumb';
+import ProductSummary from '../components/ProductSummary';
+import TitleDescription from '../components/TitleDescription';
 
 const DetailsProduct = () => {
   const { id } = useParams();
   const { data: productDetail, isLoading } = useProduct({
     id: id ?? '',
-  }) as any;
+  });
   const { isMobile } = useResponsive();
-  const { title, price, picture, condition, sold_quantity, description } =
-    productDetail?.item ?? {};
+  const { picture, description } = productDetail?.item ?? {};
 
   return (
     <div className="w-full">
@@ -30,42 +30,14 @@ const DetailsProduct = () => {
                 src={picture}
                 alt={picture}
               />
-              <div className="flex flex-col gap-4">
-                <h2 className="text-xl font-normal text-gray-900">
-                  {stg('description_product')}
-                </h2>
-                <span className="text-[12px] text-gray-500">
-                  {description || stg('this_product_does_not_description')}
-                </span>
-              </div>
+              <TitleDescription
+                title={stg('description_product')}
+                description={
+                  description ?? stg('this_product_does_not_description')
+                }
+              />
             </div>
-            <div
-              className={`flex flex-col w-5/12 ${
-                isMobile ? 'w-full' : 'w-6/12'
-              }`}
-            >
-              <span className="text-[11px] w-full">
-                {stg('quantity_products_sold', {
-                  replace: { '%condition': condition, '%qty': sold_quantity },
-                })}
-              </span>
-              <div className="w-full font-semibold">
-                <h2>{title}</h2>
-              </div>
-              <div>
-                <Amount
-                  amount={price?.amount}
-                  decimals={price?.decimals}
-                  classNameIntegerPart="flex text-[2.3rem] font-normal gap-1.5"
-                  classNameDecimalPart=" text-[1rem] self-start pt-2"
-                />
-                <Button
-                  className="mt-8 bg-[#296AF8] text-white w- rounded-md w-full"
-                  text={stg('buy')}
-                  onClick={() => {}}
-                />
-              </div>
-            </div>
+            <ProductSummary isMobile={isMobile} {...productDetail?.item} />
           </div>
         )}
       </div>

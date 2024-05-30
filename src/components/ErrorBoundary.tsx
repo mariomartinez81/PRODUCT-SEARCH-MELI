@@ -1,5 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
+
 import DebugDev from '../layouts/unavailable/DebugDev';
 import Unavailable from '../layouts/unavailable';
 
@@ -28,9 +29,9 @@ class ErrorBoundary extends React.Component<any, MyState> {
     // You can also log error messages to an error reporting service here
   }
 
-  goToMyOnlineBanking = () => {
+  goToHome() {
     window.location.replace('/');
-  };
+  }
 
   render() {
     if (this.state.errorInfo) {

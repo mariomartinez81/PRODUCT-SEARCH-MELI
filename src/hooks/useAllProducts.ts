@@ -1,24 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '../services/api';
-import axios from 'axios';
-import { ProductsProps } from '../types/product.type';
 
-interface useAllProductsProps {
+import { getProducts } from '../services/fetch';
+
+interface UseAllProductsProps {
   search: string;
 }
 
-const useAllProducts = ({ search }: useAllProductsProps) => {
-  if (!search) return;
-  return useQuery({
+const useAllProducts = ({ search }: UseAllProductsProps) =>
+  useQuery({
     queryKey: ['allProducts', search],
-    queryFn: async () => {
-      const products = await axios.get(
-        `http://localhost:3002/api/items?q=${search}`,
-      );
-      return products.data;
-    },
+    queryFn: async () => await getProducts(search),
     refetchOnWindowFocus: false,
   });
-};
 
 export default useAllProducts;

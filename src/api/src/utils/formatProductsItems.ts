@@ -12,6 +12,7 @@ const formatProductsItems = (productItems: ResultProps[]) =>
     picture: product.thumbnail,
     condition: product.condition,
     free_shipping: product.shipping.free_shipping,
+    seller: product?.seller?.nickname,
   }));
 
 export { formatProductsItems };

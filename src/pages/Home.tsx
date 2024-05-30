@@ -1,11 +1,12 @@
+import { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import Icon from '../components/Icon';
 import logo from '../assets/Logo_ML.png';
 import searchLogo from '../assets/ic_Search.png';
 import { useResponsive } from '../hooks/useResponsive';
-import { useState } from 'react';
 import handleKeyPress from '../utils/handlerKeyPress';
 
 const Home = () => {

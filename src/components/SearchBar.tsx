@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+
 import Icon from './Icon';
 
 interface SearchBarProps extends React.HTMLProps<HTMLInputElement> {

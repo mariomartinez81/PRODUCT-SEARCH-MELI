@@ -1,7 +1,6 @@
-import { HiChevronRight } from 'react-icons/hi';
 import { GoChevronRight } from 'react-icons/go';
 interface BreadCrumbProps {
-  list: string[];
+  list?: string[];
 }
 
 const BreadCrumb = ({ list }: BreadCrumbProps) => {

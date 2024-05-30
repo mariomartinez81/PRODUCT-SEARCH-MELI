@@ -1,4 +1,5 @@
 import { Navigate } from 'react-router-dom';
+
 import { DetailsProduct, Home, ProductList } from './lazyInports.routes';
 
 export default [

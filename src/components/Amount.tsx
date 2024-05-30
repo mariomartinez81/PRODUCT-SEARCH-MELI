@@ -1,5 +1,4 @@
-import React from 'react';
-import currencyFormat, { moneyMask } from '../utils/currencyFormat';
+import currencyFormat from '../utils/currencyFormat';
 
 interface AmountProps {
   amount?: number;
@@ -20,13 +19,9 @@ const Amount = ({
     value: amount,
     minFraction: decimals,
     maxFraction: decimals,
-    // currency: 'MXN',
   });
 
-  const [integerPart, decimalPart] = formattedValue
-    // .replace('$', '')
-    .trim()
-    .split('.');
+  const [integerPart, decimalPart] = formattedValue.trim().split('.');
 
   const symbol = integerPart[0];
 

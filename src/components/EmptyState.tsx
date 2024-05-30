@@ -1,7 +1,8 @@
-import React, { CSSProperties, ReactElement, ReactNode } from 'react';
+import { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { spaceBreakFromStrings } from '../utils/spaceBreakFromStrings';
+
 import Button from './Button';
+import { spaceBreakFromStrings } from '../utils/spaceBreakFromStrings';
 
 interface ResultsNotFoundsProps {
   title: string;

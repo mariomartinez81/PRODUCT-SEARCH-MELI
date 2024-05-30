@@ -18,7 +18,7 @@ const ProductList = () => {
 
   const { data: productsData, isLoading } = useAllProducts({
     search: state?.search || search,
-  }) as any;
+  });
 
   const hasProducts = !!productsData?.items?.length;
   const navigate = useNavigate();

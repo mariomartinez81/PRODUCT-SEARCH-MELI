@@ -24,6 +24,7 @@ export interface ItemProps {
   free_shipping?: boolean;
   sold_quantity?: number;
   description?: string;
+  seller?: string;
 }
 
 export interface PriceProps {

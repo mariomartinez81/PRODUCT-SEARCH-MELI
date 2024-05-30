@@ -1,20 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
-import { getProductsById } from '../services/api';
-import axios from 'axios';
+
+import { getProductsById } from '../services/fetch';
 
 interface UseProductProps {
   id: string;
 }
 
-const useProduct = ({ id }: UseProductProps) => {
-  if (!id) return;
-  return useQuery({
+const useProduct = ({ id }: UseProductProps) =>
+  useQuery({
     queryKey: ['product', id],
-    queryFn: async () => {
-      const products = await axios.get(`http://localhost:3002/api/items/${id}`);
-      return products.data;
-    },
+    queryFn: async () => await getProductsById(id),
   });
-};
 
 export default useProduct;
