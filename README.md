@@ -1,30 +1,75 @@
-# React + TypeScript + Vite
+# PRODUCT-SEARCH-MELI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="right">
+  <img height="200" src="https://example.com/path/to/your/logo.png" alt="Project Logo" />
+</p>
 
-Currently, two official plugins are available:
+PRODUCT-SEARCH-MELI is a web application that allows users to search for products using the Mercado Libre API. Built with React, TypeScript, and Vite, it provides a minimal setup with HMR (Hot Module Replacement) and some ESLint rules.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Frontend
 
-## Expanding the ESLint configuration
+### Tech stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- TypeScript
+- React
+- React Router
+- SCSS 
+- TailwindCSS
+- ESLint
+- Vite
 
-- Configure the top-level `parserOptions` property like this:
+**Framework:** Vite.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
+### Scripts
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- `npm install` for dependencies
+- `npm run dev` for development environment
+- `npm run build` to create production build
+- `npm run test` to create production build
+
+### Features
+
+- **Product Search:** Allows users to search for products using the Mercado Libre API.
+- **Product List:** Allows users to search for products using the Mercado Libre API and lists them in groups of 4 items, displaying basic product features.
+- **Product Details:** View detailed information about each product.
+- **Responsive Design:** Ensures a seamless experience across various devices.
+- **Route Protection:** Added route protection to secure certain parts of the application.
+- **Empty State Modals:** Implemented modals to display when there are no search results or other empty states.
+- **Error Boundaries:** Added local and production error boundaries to gracefully handle and display errors.
+- **Testing:** Implemented tests to ensure the reliability and correctness of the application.
+
+## Backend
+
+### Tech stack
+
+- TypeScript
+- Node.js
+- Express
+- Supertest
+
+### Scripts
+
+To run the backend server, navigate to the `src/api` directory and open a terminal, then execute the following commands:
+
+- `npm install` for dependencies
+- `npm run dev` for development environment with nodemon
+
+### Features
+
+- **REST API:** Implements a RESTful API architecture.
+- **Product Endpoints:** Fetch product data from the Mercado Libre API.
+- **Testing:** Implemented tests to ensure the reliability and correctness of the application.
+
+### Endpoints
+
+- **User:**
+  - `/api/items` GET: Fetch all products from API.
+  - `/api/items?id` GET: Fetch specific product detail from API.
+
+
+
+## License
+
+MIT License.
+
+_For more details, visit the [GitHub repository](https://github.com/mariomartinez81/PRODUCT-SEARCH-MELI)._
