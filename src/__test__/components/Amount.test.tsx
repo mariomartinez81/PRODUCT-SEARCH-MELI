@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-
-import Amount from '../../components/Amount';
+import Amount from '@components/common/Amount';
 
 describe('AssistanceError layout test', () => {
   test('should render to component', () => {

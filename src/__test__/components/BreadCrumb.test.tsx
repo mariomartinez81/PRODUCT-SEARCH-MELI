@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-
-import BreadCrumb from '../../components/BreadCrumb';
+import BreadCrumb from '@components/common/BreadCrumb';
 
 describe('AssistanceError layout test', () => {
   test('should render to component', () => {

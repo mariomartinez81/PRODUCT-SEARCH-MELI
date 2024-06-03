@@ -1,0 +1,52 @@
+.Unavailable
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100%
+  padding: 1.5rem
+  height: 100dvh
+
+  @media (min-width: 768px)
+    padding: 5rem 0
+
+  .container
+    display: flex
+    flex-direction: column
+    align-items: center
+    height: 100%
+    margin: auto
+    justify-content: space-evenly
+    max-width: 23rem
+
+    .logo
+      object-fit: contain
+      margin: auto
+      width: 2.25rem
+
+    .gears-icon
+      margin-bottom: 3rem
+
+    .message
+      display: flex
+      flex-direction: column
+      align-items: center
+
+      .title
+        margin-bottom: 0.5rem
+        font-size: 1.5rem
+        font-weight: bold
+        line-height: 2rem
+        text-align: center
+        color: #1f2937
+
+      .subtitle
+        margin-bottom: 0.5rem
+        line-height: 1.25rem
+        text-align: center
+        color: #6b7280
+
+        @media (min-width: 768px)
+          font-size: 0.875rem
+
+  .button
+    width: 100% // w-full

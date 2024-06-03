@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import Icon from '../../components/Icon';
+import Icon from '@components/common/Icon';
 
 describe('EmptyState tests', () => {
   test('should render component', () => {

@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-
-import TitleDescription from '../../components/TitleDescription';
+import TitleDescription from '@components/common/TitleDescription';
 
 describe('EmptyState tests', () => {
   test('should render component', () => {

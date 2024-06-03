@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+
+import ProductList from '@pages/ProductList';
 import { allProductsMockData } from '../__mocks__/mockDataProducts';
-import ProductList from '../../pages/ProductList';
 
 // Mock the API response
 

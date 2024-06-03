@@ -4,7 +4,7 @@ const Home = lazy(
   () =>
     import(
       /* webpackChunkName: "Home" */
-      '../pages/Home'
+      '@pages/Home'
     ),
 );
 
@@ -12,7 +12,7 @@ const ProductList = lazy(
   () =>
     import(
       /* webpackChunkName: "ProductList" */
-      '../pages/ProductList'
+      '@pages/ProductList'
     ),
 );
 
@@ -20,7 +20,7 @@ const DetailsProduct = lazy(
   () =>
     import(
       /* webpackChunkName: "DetailsProduct" */
-      '../pages/DetailsProduct'
+      '@pages/DetailsProduct'
     ),
 );
 

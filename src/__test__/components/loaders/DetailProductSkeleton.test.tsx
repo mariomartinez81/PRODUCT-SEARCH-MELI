@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
-
-import DetailProductSkeleton from '../../../components/loaders/DetailProductSkeleton';
+import DetailProductSkeleton from '@components/loaders/DetailProductSkeleton';
 
 describe('AssistanceError layout test', () => {
   test('should render to component', () => {

@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 
 import { productMockData } from '../__mocks__/mockDataProducts';
-import DetailsProduct from '../../pages/DetailsProduct';
+import DetailsProduct from '@pages/DetailsProduct';
 
 describe('Test for Details product page', () => {
   beforeAll(() => {

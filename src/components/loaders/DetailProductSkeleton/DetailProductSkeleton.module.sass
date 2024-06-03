@@ -1,0 +1,91 @@
+@import '../../../sass/animationSkeletons'
+@import '../../../sass/_variables'
+
+.skeleton-details-product
+  display: flex
+  width: 100%
+  height: 100%
+  gap: 0.5rem
+
+  &.mobile
+    flex-direction: column
+    gap: 1.5rem
+
+  &.desktop
+    flex-direction: row
+
+  .content
+    display: flex
+    flex-direction: column
+    width: 100%
+    height: 100%
+
+  .center
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+
+    .image
+      width: 83.333333%
+      height: 42dvh
+      border-radius: 0.5rem
+      background-color: $color-skeleton // bg-slate-300
+
+  .info
+    display: flex
+    flex-direction: column
+    gap: 0.5rem
+
+    .line
+      background-color: $color-skeleton // bg-slate-300
+      border-radius: 0.375rem
+
+    .line-large
+      height: 1.5rem
+      margin-top: 1.5rem
+      width: 40%
+      border-radius: 0.75rem
+
+    .line-small
+      height: 0.5rem
+      width: 100%
+
+  .sidebar
+    display: flex
+    flex-direction: column
+    width: 33.333333%
+
+    &.mobile
+      width: 100%
+
+    &.desktop
+      width: 50%
+
+    .line
+      background-color: $color-skeleton // bg-slate-300
+      border-radius: 0.375rem
+
+    .line-large
+      height: 0.5rem
+      width: 33.333333%
+      margin-bottom: 0.5rem
+
+    .line-small
+      height: 1rem
+      width: 83.333333%
+
+    .cta
+      height: 3rem
+      width: 80%
+      margin-top: 2rem
+      border-radius: 0.375rem
+      background-color: $color-skeleton // bg-slate-300
+
+    .cta-small
+      height: 2rem
+      width: 100%
+      margin-top: 2rem
+      border-radius: 0.375rem
+      background-color: $color-skeleton // bg-slate-300
+

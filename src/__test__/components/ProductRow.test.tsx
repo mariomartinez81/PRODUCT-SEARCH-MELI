@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import ProductRow from '../../components/ProductRow';
+import ProductRow from '@components/products/ProductRow';
 import { productMockData } from '../__mocks__/mockDataProducts';
 
 describe('EmptyState tests', () => {
