@@ -6,4 +6,12 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), envCompatible(), tsconfigPaths()],
+
+  // css: {
+  //   preprocessorOptions: {
+  //     sass: {
+  //       additionalData: `@import "./src/sass/_variables.sass"\n`,
+  //     },
+  //   },
+  // },
 });

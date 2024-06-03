@@ -1,3 +1,6 @@
+/* @import 'variables.sass'; */
+@import './sass/_variables.sass';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-
-import Home from '../../pages/Home';
 import { useQuery } from '@tanstack/react-query';
+
+import Home from '@pages/Home';
 
 describe('test for home page', () => {
   beforeEach(() => {

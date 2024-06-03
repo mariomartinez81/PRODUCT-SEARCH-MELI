@@ -1,0 +1,35 @@
+.ProductSummary
+  display: flex
+  flex-direction: column
+  width: 41.666667%
+
+  &--mobile
+    width: 100%
+
+  &--desktop
+    width: 40%
+
+  &__quantity
+    font-size: 0.6875rem
+    width: 100%
+
+  &__title
+    width: 100%
+    font-weight: 600
+    margin-bottom: 1.5rem
+
+  &__amount
+    &__integer_part
+      display: flex
+      font-size: 2.3rem
+      font-weight: 400
+      gap: 0.375rem
+
+    &__decimal_part
+      font-size: 1rem
+      align-self: flex-start
+      padding-top: 0.5rem
+
+  &__button
+    margin-top: 2rem
+    width: 100%

@@ -21,7 +21,19 @@
     "noFallthroughCasesInSwitch": true,
 
     //absolute import
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "paths": {
+      "@assets/*": ["./assets/*"],
+      "@components/*": ["./components/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@types/*": ["./types/*"],
+      "@layouts/*": ["./layouts/*"],
+      "@pages/*": ["./pages/*"],
+      "@routes/*": ["./routes/*"],
+      "@services/*": ["./services/*"],
+      "@utils/*": ["./utils/*"],
+      "@sass/*": ["./sass/*"]
+    }
     // "paths": {
     //   "@/*": ["./*"]
     // }

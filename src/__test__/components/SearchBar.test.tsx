@@ -1,6 +1,5 @@
+import SearchBar from '@components/products/SearchBar';
 import { fireEvent, render, screen } from '@testing-library/react';
-
-import SearchBar from '../../components/SearchBar';
 
 describe('EmptyState tests', () => {
   test('should render component', () => {

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import EmptyState from '../../components/EmptyState';
+import EmptyState from '@components/common/EmptyState';
 
 const emptyStateProps = {
   title: 'test',

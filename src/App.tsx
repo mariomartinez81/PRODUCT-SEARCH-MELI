@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Suspense } from 'react';
 
-import './App.css';
+import './sass/globals.sass';
 import { BrowserRouter } from 'react-router-dom';
 import Router from './routes';
-import ErrorBoundary from './components/ErrorBoundary';
+import ErrorBoundary from './components/common/ErrorBoundaty';
 
 function App() {
   return (

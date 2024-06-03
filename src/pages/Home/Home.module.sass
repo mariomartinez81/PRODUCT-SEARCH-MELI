@@ -1,0 +1,46 @@
+.Home
+  display: flex
+  flex-direction: column
+  width: 100%
+
+  &__header
+    display: flex
+    width: 100%
+
+    &__container
+      display: flex
+      width: 100%
+      gap: 1.5rem // gap-6
+
+      &--mobile
+        padding: 0 // px-0
+
+      &--desktop
+        padding: 0 10rem // px-40
+
+      &__logo
+        display: flex
+        cursor: pointer
+        width: fit-content // w-fit
+
+      &__search-bar
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 100%
+        border: white
+        border-radius: 0.125rem // rounded-sm
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) // shadow-sm
+        cursor: text
+
+  &__content
+    display: flex
+    width: 100%
+    justify-content: center
+    align-items: center
+
+    &--mobile
+      padding: 0 0.75rem // px-3
+
+    &--desktop
+      padding: 0 11rem // px-44
