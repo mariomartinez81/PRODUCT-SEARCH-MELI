@@ -19,10 +19,13 @@ const ProductRow = ({ product, handleClick }: ProductRowProps) => {
     >
       <img className={styles.ProductRow__image} src={picture} alt="" />
       <div className={styles.ProductRow__content}>
-        <div className={styles.ProductRow__header}>
+        <div className={styles.ProductRow__content__header}>
           <Amount amount={price?.amount} />
           {free_shipping && (
-            <Icon className={styles.ProductRow__icon} icon={freeShippingIcon} />
+            <Icon
+              className={styles.ProductRow__content__header__icon}
+              icon={freeShippingIcon}
+            />
           )}
         </div>
         <span className={styles.ProductRow__title}>{title}</span>
